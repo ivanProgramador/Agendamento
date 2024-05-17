@@ -14,7 +14,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/agendamento",{useNewUrlParser:true,u
 
 
 app.get("/",(req,res)=>{
-    res.send("Teste");
+    res.render("index")
 });
 
 //rota pára o formulario
