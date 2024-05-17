@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const AppointmentService = require("./services/AppointmentService");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:false}));
@@ -16,9 +17,30 @@ app.get("/",(req,res)=>{
     res.send("Teste");
 });
 
-
+//rota pára o formulario
 app.get("/cadastro",(req,res)=>{
     res.render("create");
 });
+
+//rota que executa o cadastro
+
+app.post("/create",async(req,res)=>{
+
+    var status = await AppointmentService.Create(
+        req.body.name,
+        req.body.email,
+        req.body.cpf,
+        req.body.description,
+        req.body.date,
+        req.body.time
+    );
+
+    if(status){
+        res.redirect("/");
+    }else{
+        res.send("Ocorreu um erro");
+    }
+
+})
 
 app.listen(8080,()=>{});

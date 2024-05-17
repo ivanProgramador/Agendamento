@@ -9,14 +9,17 @@
 <body>
   <h1>Cadastro de consultas</h1>
   <hr>
-  <form action="" method="post">
-    <input type="text" name="name" id="name" placeholder="Nome do paciente" class="form-control">
-    <input type="email" name="email" id="email" placeholder="E-mail do paciente" class="form-control">
-    <input type="text" name="CPF" id="cpf" placeholder="CPF" class="form-control cpf">
-    <input type="text" name="description" id="description" placeholder="Descrição" class="form-control">
-    <input type="date" name="date" id="date" class="form-control">
-    <input type="time" name="time" id="time" class="form-control">
+  <form action="/create" method="post">
+
+    <input type="text"  name="name"        id="name" placeholder="Nome do paciente" class="form-control">
+    <input type="email" name="email"       id="email" placeholder="E-mail do paciente" class="form-control">
+    <input type="text"  name="cpf"         id="cpf" placeholder="CPF" class="form-control cpf">
+    <input type="text"  name="description" id="description" placeholder="Descrição" class="form-control">
+    <input type="date"  name="date"        id="date" class="form-control">
+    <input type="time"  name="time"        id="time" class="form-control">
+
     <button class="btn btn-success" >Agendar</button>    
+
   </form>
 
 
