@@ -6,18 +6,18 @@ const Appo = mongoose.model("Appointment",appointment);
 
 class AppointmentService {
 
-    async Create(name, email, description, cpf, date, time){
+    async Create(name, email, cpf, description, date, time){
         
         var newAppo = new Appo({
             name,
             email,
-            description,
             cpf,
+            description,
             date,
             time,
             finished:false
         });
-        
+
         try{
             await newAppo.save();
             return true;
@@ -30,6 +30,7 @@ class AppointmentService {
 
 
     async GetAll(showFinished){
+
         if(showFinished){
 
             return await Appo.find();
@@ -38,17 +39,13 @@ class AppointmentService {
 
 
             var appos = await Appo.find({'finished': false});
+
             var appointments = [];
 
             appos.forEach(appointment=>{
 
-                if(appointment.date != undefined){
-
                     appointments.push(AppointmentFactory.Build(appointment));
 
-                }
-
-               
             });
 
             return appointments;

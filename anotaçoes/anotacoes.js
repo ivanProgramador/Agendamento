@@ -17,6 +17,29 @@ Dados
   <script>
      $('.cpf').mask('000.000.000-00', {reverse: true});
   </script>
+
+  mostrando dados no calendar 
+
+  O calendar precisa que os dados estejam em um array para que possam ser exibidos como a Build()
+  ja coloca esses ddaddos assim então basta passar a riota que retorna eles o parametro events 
+  equivale a uma requisição get quando os dados vem pela rota ele origaniza na view
+  
+  
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+<script>
+
+    var element = document.getElementById("calendar");
+    var calendar = new FullCalendar.Calendar(element,{
+        initialView:'dayGridMonth',
+        locale:'pt-br',
+        events:'getcalendar'
+    });
+
+    calendar.render();
+
+  
+
+</script>
   
 
 */
