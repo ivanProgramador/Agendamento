@@ -45,9 +45,9 @@ app.post("/create",async(req,res)=>{
 
 app.get("/getcalendar", async(req,res)=>{
 
-    var consulta = await AppointmentService.GetAll(false);
+    var appointments = await AppointmentService.GetAll(true);
 
-    res.json(consulta);
+    res.json(appointments);
 })
 
 app.listen(8080,()=>{});
