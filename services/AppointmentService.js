@@ -64,6 +64,16 @@ class AppointmentService {
         }
     }
 
+    async Finish(id){
+        try {
+            await  Appo.findByIdAndUpdate(id,{finished:true});
+            return true;
+        } catch (error) {
+            return false;
+            console.log(error);
+        }
+    }
+
 
 
 

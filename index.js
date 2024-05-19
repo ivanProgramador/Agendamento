@@ -60,4 +60,10 @@ app.get('/event/:id', async (req,res)=>{
    
 })
 
+app.post("/finish", async(req,res)=>{
+    var id = req.body.id;
+    await AppointmentService.Finish(id);
+    res.redirect("/");
+});
+
 app.listen(8080,()=>{});
