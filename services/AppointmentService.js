@@ -15,7 +15,8 @@ class AppointmentService {
             description,
             date,
             time,
-            finished:false
+            finished:false,
+            notified:false
         });
 
         try{
@@ -92,6 +93,12 @@ class AppointmentService {
 
 
 
+
+    }
+
+    async SendNotification(){
+        var appos = await this.GetAll(false);
+        console.log(appos);
 
     }
 
