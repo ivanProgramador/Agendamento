@@ -100,6 +100,11 @@ class AppointmentService {
     async SendNotification(){
         var appos = await this.GetAll(false);
 
+        // pegando os dados de quem vai mandar o email
+        // no caso o trnspooirter é um carteiro 
+        // e a função create trnsporter recebe um objeto 
+        //com os dados do emial da clinica que vai mandar o email  
+
         var transporter = mailer.createTransport({
             host:"smtp.mailtrap.io",
             port: 25,
@@ -109,7 +114,7 @@ class AppointmentService {
             }
         });
         
-        appos.forEach(app=>{
+        appos.forEach(async app=>{
 
             var date = app.start.getTime();
             var hour = 1000 * 60 * 60;
@@ -117,6 +122,26 @@ class AppointmentService {
 
             if(gap <= hour){
                 if(!app.notified){
+
+                    await Appo.findByIdAndUpdate(app.id,{notified:true})
+
+                    // aqui o transporter vai enviar o emial usando a função sendMail
+                    // que recebe um objeto com dados de quam vai receber e da mensagem que sera enviada para o paciente
+                    
+
+                    transporter.sendMail({
+                        from:' clinica <clinica@gmail.com>',
+                        to: app.email,
+                        subject:'Viso de consulta',
+                        text:'Sua consulta começa em 1h'
+
+                    }).then(()=>{
+
+                    }).catch(err=>{
+                        console.log(err);
+                    });
+
+
 
 
                 }
