@@ -1,6 +1,7 @@
 var appointment = require("../models/Appointment");
 var mongoose = require("mongoose");
 var AppointmentFactory = require('../factories/AppointmentFactory');
+var mailer = require("nodemailer");
 
 const Appo = mongoose.model("Appointment",appointment);
 
@@ -98,6 +99,15 @@ class AppointmentService {
 
     async SendNotification(){
         var appos = await this.GetAll(false);
+
+        var transporter = mailer.createTransport({
+            host:"smtp.mailtrap.io",
+            port: 25,
+            auth:{
+                user:"",
+                pass:"",
+            }
+        });
         
         appos.forEach(app=>{
 
@@ -106,7 +116,10 @@ class AppointmentService {
             var gap  = date-Date.now();
 
             if(gap <= hour){
-                
+                if(!app.notified){
+
+
+                }
             }
         })
 

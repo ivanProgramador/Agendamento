@@ -79,6 +79,9 @@ app.get('/searchresult', async (req,res)=>{
    res.render('list',{appos});
 })
 
+
+
+
 var pollTime = 5000;
 
 setInterval( async() =>{
